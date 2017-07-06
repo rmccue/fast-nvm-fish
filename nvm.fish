@@ -27,6 +27,12 @@ function nvm-fast
 				set new_path $brigand_nvm_fish_path/$matched_version/bin $new_path
 			end
 			set fish_user_paths $new_path
+
+			if test $matched_version = 'system'
+				echo "Now using system version of node:" (node -v 2>/dev/null)
+			else
+				echo "Now using node $matched_version"
+			end
 		end
 	else
 		bash -c "source ~/.nvm/nvm.sh; nvm $argv"
