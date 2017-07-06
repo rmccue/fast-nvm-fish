@@ -26,10 +26,12 @@ function nvm-fast
 			end
 			set -g fish_user_paths $new_path
 
-			if test $matched_version = 'system'
-				echo "Now using system version of node:" (node -v 2>/dev/null)
-			else
-				echo "Now using node $matched_version"
+			if not status --is-login
+				if test $matched_version = 'system'
+					echo "Now using system version of node:" (node -v 2>/dev/null)
+				else
+					echo "Now using node $matched_version"
+				end
 			end
 		end
 	else
