@@ -26,7 +26,8 @@ function nvm-fast
 			end
 			set -g fish_user_paths $new_path
 
-			if not status --is-login
+			# Check if we're in startup
+			if not status --print-stack-trace | grep 'called during startup' >/dev/null
 				if test $matched_version = 'system'
 					echo "Now using system version of node:" (node -v 2>/dev/null)
 				else
